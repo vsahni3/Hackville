@@ -7,7 +7,7 @@ def reply(prompt):
     response = co.generate(
     model='command-xlarge-nightly',
     prompt=prompt,
-    max_tokens=100,
+    max_tokens=150,
     temperature=0.8,
     stop_sequences=["--"],
     return_likelihoods='NONE',

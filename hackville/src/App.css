@@ -36,10 +36,12 @@ body {
 }
 
 .chat-window {
-  width: 800px;
+  width: 100vw;
   height: 650px;
   /* margin: 10px; */
-  margin-top: -100px;
+  margin-top: 150px;
+  margin-bottom: 0px;
+
 }
 
 .chat-window p {
@@ -54,7 +56,7 @@ body {
   position: relative;
   bottom: 20%;
 }
-  
+
 /* Needed */
 .chat-window .chat-header {
   height: 45px;
@@ -76,15 +78,17 @@ body {
 }
 
 .chat-window .chat-body {
-  height: calc(450px - (45px + 70px) + 100px);
+  height: calc(450px - (45px + 70px) + 200px);
   /* width: 600; */
   border: 1px solid black;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   background: #fff;
   margin: 10px;
-
+  margin-top: 0px;
   position: relative;
   bottom: 20%;
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
 .chat-window .chat-body .message-container {
@@ -102,32 +106,28 @@ body {
   height: auto;
   padding: 10px;
   display: flex;
+
 }
 
 .chat-window .chat-body .message .message-content {
-  width: auto;
-  height: auto;
-  min-height: 40px;
-  max-width: 250px;
-  background-color: #43a047;
-  border-radius: 5px;
-  color: white;
-  display: flex;
-  align-items: center;
-  margin-right: 5px;
-  margin-left: 5px;
-  padding-right: 5px;
-  padding-left: 5px;
-  overflow-wrap: break-word;
-  word-break: break-word;
+  background-color: #fabfab;
+  border-radius: 16px 4px 4px 16px;
+  -webkit-border-radius: 16px 4px 4px 16px;
+  -moz-border-radius: 16px 4px 4px 16px;
 }
+
+
+
 
 #you {
-  justify-content: flex-start;
+  position: relative;
+  left: 800px;
+
 }
 
-#you .message-content {
+#you .talktext {
   justify-content: flex-start;
+
 }
 
 #you .message-meta {
@@ -136,12 +136,17 @@ body {
 }
 
 #other {
-  justify-content: flex-end;
+  /* justify-content: flex-end; */
+  justify-content: flex-start;
 }
 
-#other .message-content {
+#other .talktext {
   justify-content: flex-end;
-  background-color: cornflowerblue;
+  background: linear-gradient(287.92deg, rgba(23, 174, 223, 0.376) -5.49%, rgba(23, 174, 223, 0) 82.28%), #3EE0B9;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  /* right: 5px; */
 }
 
 #other .message-meta {
@@ -161,17 +166,21 @@ body {
 
 .chat-window .chat-footer {
   height: 50px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 20px;
   border-top: none;
   display: flex;
+  flex-direction: row;
   /* background: rgb(238,174,202);
   background: radial-gradient(circle, #F5E3E6 0%, #F5E3E6 100%);    */
   margin: 15px;
   position: relative;
   bottom: 17%;
+  margin-left: 60px;
+  margin-right: 60px;
 }
 
+/* 
 .chat-window .chat-footer input {
   height: 100%;
   flex: 85%;
@@ -182,109 +191,60 @@ body {
   border-right: 1px dotted #607d8b;
   outline: none;
   font-family: "Open Sans", sans-serif;
-}
+} */
+
 
 .chat-window .chat-footer button {
+  /* place-items: center; */
+  cursor: pointer;
+  /* height: 100%; */
   border: 10px;
-  display: grid;
   place-items: center;
   cursor: pointer;
-  flex: 15%;
   height: 100%;
   background: transparent;
-  outline: none;
-  font-size: 25px;
+  width: 20%;
   /* color: lightgray; */
 }
 
-.chat-window .chat-footer button {
-  border: 10px;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-  flex: 15%;
+.chat-window .chat-footer .send-button {
+  /* Rectangle 17 */
+  background: #3EE0B9;
+  border-radius: 43px;
   height: 100%;
-  background: transparent;
-  outline: none;
-  font-size: 25px;
-  /* color: lightgray; */
+  width: 50%;
+  margin-right: 10px;
+  margin-left: 10px;
+  color: white;
+  font-size: 20px;
+  font-family: 'Rubik', sans-serif;
+}
+
+.chat-window .chat-footer .mic-button {
+  /* Rectangle 17 */
+  height: 100%;
+  width: 110%;
+  margin-top: 10px;
+
+}
+
+.chat-window .chat-footer .speech-text-box {
+  /* flex: 50%; */
+  /* height: px; */
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 15px;
+  background-color: #ECECEC;
+  width: 400%;
+  text-align: center;
+  border: 0;
 }
 
 .chat-window .chat-footer button:hover {
   color: #43a047;
 }
 
-.chat-window .chat-footer2 {
-  height: 30px;
-  border: 1px ;
-  border-radius: 20px;
-  border-top: none;
-  display: flex;
-  /* background: rgb(238,174,202);
-  background: radial-gradient(circle, #F5E3E6 0%, #F5E3E6 100%);    */
-  margin: 15px;
-  position: relative;
-  bottom: 15%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
-}
-.chat-window .chat-footer2 button {
-  position: relative;
-  left: 33%;
-  flex: 50%;
-  height: 90%;
-  font-size: 15px;
-  border-radius: 15px;
-}
 
-.chat-window .chat-footer3 {
-  height: 30px;
-  /* border: 1px ; */
-  border-radius: 20px;
-  border-top: none;
-  display: flex;
-  /* background: rgb(238,174,202);
-  background: radial-gradient(circle, #F5E3E6 0%, #F5E3E6 100%);    */
-  margin: 15px;
-  position: relative;
-  bottom: 20%;
-  left: 100%;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
-}
-.chat-window .chat-footer3 button {
-  height: 120%;
-  background-color: transparent;
-  color: transparent;
-  border: 0px;
-  position: relative;
-  margin-right: 60%;
-}
-
-/* .chat-window .chat-header {
-  height: 45px;
-  border-radius: 20px;
-  background: rgb(238, 174, 202);
-  background: radial-gradient(circle, #F5E3E6 0%, #F5E3E6 100%);
-  position: relative;
-  cursor: pointer;
-  position: relative;
-  bottom: 20%;
-} */
-
-/* .chat-window .chat-body {
-  height: calc(450px - (45px + 70px));
-  border: 1px solid black;
-  border-radius: 20px;
-  background: #fff;
-  margin: 10px;
-  position: relative;
-  bottom: 20%;
-} */
 
 .hide {
   opacity: 0 !important;
@@ -292,23 +252,25 @@ body {
 
 /* Loader */
 /* Loader */
-:root{
+/* :root{
   --main-color: #ABA1FF;
   --main-color-dark: #675FB2;
   --ray-color: #FFD6BB;
   --spark-color: #70B268;
   --back-color: #2f2e4e;
-}
-body{
-  margin:0;
+} */
+body {
+  margin: 0;
   padding: 0;
   background: var(--back-color);
 }
-.container{
+
+.container {
   max-width: 800px;
   margin: auto;
 }
-#lastray{
+
+#lastray {
   margin: auto;
   border-radius: 100%;
   border: 0px solid;
@@ -320,19 +282,21 @@ body{
   left: 50%;
   top: 50%;
 }
-#loading-page{
+
+#loading-page {
   background: var(--back-color);
   border-radius: 100%;
-  top:50%;
+  top: 50%;
   left: 50vw;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   width: 400vh;
   height: 400vh;
   position: fixed;
   overflow: hidden;
   transition-duration: 1s;
 }
-#loader{
+
+#loader {
   margin: auto;
   width: 100%;
   height: 100%;
@@ -341,14 +305,16 @@ body{
   max-height: 200px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   display: flex;
 }
-.element{
+
+.element {
   margin: auto;
   position: absolute;
 }
-.sphere{
+
+.sphere {
   background: radial-gradient(circle, var(--main-color), var(--main-color-dark));
   width: 50px;
   height: 50px;
@@ -359,7 +325,8 @@ body{
   top: 50%;
   box-shadow: 0px 0px 15px 0px rgba(200, 230, 255, 0.5);
 }
-.ray{
+
+.ray {
   margin: auto;
   border-radius: 100%;
   border: 5px solid;
@@ -374,62 +341,139 @@ body{
   top: 50%;
   box-shadow: 0px 0px 15px 0px rgba(255, 230, 200, 0.5);
 }
-.spark{
+
+.spark {
   width: 200px;
   height: 200px;
 }
-.particles{
+
+.particles {
   transform: translate(-50%, -50%);
 }
-.particle{
+
+.particle {
   background-color: var(--spark-color);
-  width:5px;
-  height:5px;
+  width: 5px;
+  height: 5px;
   border-radius: 100%;
   opacity: 0;
   animation: particle 1s infinite ease-in;
   left: 0%;
   top: 0%;
 }
-.spark1{transform: rotate(20deg);}
-.spark2{transform: rotate(40deg);}
-.spark3{transform: rotate(66deg);}
-.spark4{transform: rotate(172deg);}
-.spark5{transform: rotate(110deg);}
-.spark6{transform: rotate(130deg);}
-.spark7{transform: rotate(-100deg);}
-.spark8{transform: rotate(-50deg);}
-.spark9{transform: rotate(-80deg);}
-.spark10{transform: rotate(-173deg);}
-.spark11{transform: rotate(-7deg);}
-.spark12{transform: rotate(-133deg);}
 
-.particle1{animation-delay: .5s;}
-.particle2{animation-delay: 0s;}
-.particle3{animation-delay: 2.2s;}
-.particle4{animation-delay: .2s;}
-.particle5{animation-delay: 2s;}
-.particle6{animation-delay: 1.2s;}
-.particle7{animation-delay: 2.5s;}
-.particle8{animation-delay: 1.5s;}
-.particle9{animation-delay: 1s;}
-.particle10{animation-delay: 2.5s;}
-.particle11{animation-delay: .7s;}
-.particle12{animation-delay: 1.7s;}
+.spark1 {
+  transform: rotate(20deg);
+}
 
-.loaded{
+.spark2 {
+  transform: rotate(40deg);
+}
+
+.spark3 {
+  transform: rotate(66deg);
+}
+
+.spark4 {
+  transform: rotate(172deg);
+}
+
+.spark5 {
+  transform: rotate(110deg);
+}
+
+.spark6 {
+  transform: rotate(130deg);
+}
+
+.spark7 {
+  transform: rotate(-100deg);
+}
+
+.spark8 {
+  transform: rotate(-50deg);
+}
+
+.spark9 {
+  transform: rotate(-80deg);
+}
+
+.spark10 {
+  transform: rotate(-173deg);
+}
+
+.spark11 {
+  transform: rotate(-7deg);
+}
+
+.spark12 {
+  transform: rotate(-133deg);
+}
+
+.particle1 {
+  animation-delay: .5s;
+}
+
+.particle2 {
+  animation-delay: 0s;
+}
+
+.particle3 {
+  animation-delay: 2.2s;
+}
+
+.particle4 {
+  animation-delay: .2s;
+}
+
+.particle5 {
+  animation-delay: 2s;
+}
+
+.particle6 {
+  animation-delay: 1.2s;
+}
+
+.particle7 {
+  animation-delay: 2.5s;
+}
+
+.particle8 {
+  animation-delay: 1.5s;
+}
+
+.particle9 {
+  animation-delay: 1s;
+}
+
+.particle10 {
+  animation-delay: 2.5s;
+}
+
+.particle11 {
+  animation-delay: .7s;
+}
+
+.particle12 {
+  animation-delay: 1.7s;
+}
+
+.loaded {
   width: 0px !important;
   height: 0px !important;
   transition: 1.2s ease-out;
 }
-.whitebk{
-  background:#fff!important;
+
+.whitebk {
+  background: #fff !important;
 }
-.opzero{
+
+.opzero {
   opacity: 0;
   transition: 1s ease-out;
 }
-.finalray{
+
+.finalray {
   animation: ray 2s ease-out;
   animation-delay: .3s;
   border: 1px solid;
@@ -437,17 +481,57 @@ body{
 
 /*ANIMATIONS*/
 @keyframes pump {
-  0% {width: 50px; height: 50px;}
-  83% {width: 88px; height: 88px;}
-  85% {width: 90px; height: 90px;}
-  100% {width: 50px; height: 50px;}
+  0% {
+    width: 50px;
+    height: 50px;
+  }
+
+  83% {
+    width: 88px;
+    height: 88px;
+  }
+
+  85% {
+    width: 90px;
+    height: 90px;
+  }
+
+  100% {
+    width: 50px;
+    height: 50px;
+  }
 }
+
 @keyframes ray {
-  0% {width: 10px; height: 10px; opacity: 1; border-width: 1px;}
-  100% {width: 200px; height: 200px; opacity: 0; border-width: 5px;}
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+    border-width: 1px;
+  }
+
+  100% {
+    width: 200px;
+    height: 200px;
+    opacity: 0;
+    border-width: 5px;
+  }
 }
+
 @keyframes particle {
-  0% {left:0%; top:0%; opacity: 0;}
-  70% {opacity: 1;}
-  100% {left:50%; top:50%; opacity: 1;}
+  0% {
+    left: 0%;
+    top: 0%;
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 50%;
+    top: 50%;
+    opacity: 1;
+  }
 }

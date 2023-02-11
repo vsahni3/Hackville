@@ -8,6 +8,7 @@ import {
 } from "../firebase";
 import "./Register.css";
 import Logo from './img/Logo.png'
+import SignupPic from './img/sign_up_page.png'
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -52,6 +53,7 @@ function Register() {
 
       <div className="register">
         <div className="register__container">
+        <img className="signup_pic" src={SignupPic}></img>
         <p className="title">Do you want to join?</p>
 
           <input
@@ -59,7 +61,7 @@ function Register() {
             className="register__textBox"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Full Name"
+            placeholder="Username"
           />
           <input
             type="text"

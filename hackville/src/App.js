@@ -10,6 +10,7 @@ import Reset from './components/Reset';
 import Dashboard from './components/Dashboard';
 import "./App.css";
 import Dalle from './components/Dalle';
+import Prompt from './components/Prompt';
 
 const App = () => {
   // All hooks are defined in App.js (highest component & Provided as context in the return statement)
@@ -26,7 +27,8 @@ const App = () => {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/reset" element={<Reset />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
-          <Route path="/dalle" element={<Dalle />} />
+          <Route exact path="/prompt" element={<Prompt />} />
+
           {/* <Route path="" element={} /> */}
         </Routes>
       </Router>

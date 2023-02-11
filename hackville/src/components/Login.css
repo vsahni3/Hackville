@@ -214,6 +214,14 @@ border-radius: 31.224px;
 }
 
 .login_font {
-  font-family: 'Roboto Slab', serif;
+  /* font-family: 'Roboto Slab', serif; */
   font-family: 'Rubik', sans-serif;
+}
+
+a {
+  color: #3EE0B9;
+}
+
+a:hover {
+  color: green;
 }

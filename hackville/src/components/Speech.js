@@ -3,6 +3,9 @@ import { useSpeechRecognition, useSpeechSynthesis } from 'react-speech-kit';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import { Link } from 'react-router-dom';
 import { AppContext } from './Context';
+import Navbar from './Navbar';
+import "./Speech.css";
+import MicIcon from './img/mic.png'
 
 function Speech() {
     const [value, setValue] = useState('');
@@ -47,11 +50,11 @@ function Speech() {
             const response = await fetch('http://127.0.0.1:5000/message/', {
                 method: "POST",
                 // mode: 'no-cors',
-                headers: { 
+                headers: {
                     "Content-Type": "application/json",
-                    "Access-Control-Allow-Origin" : '*',
-                    "Access-Control-Allow-Headers" : '*',
-                    "Access-Control-Allow-Methods" : 'GET, POST, PUT, DELETE'
+                    "Access-Control-Allow-Origin": '*',
+                    "Access-Control-Allow-Headers": '*',
+                    "Access-Control-Allow-Methods": 'GET, POST, PUT, DELETE'
                 },
                 body: JSON.stringify({
                     "message": value
@@ -90,49 +93,29 @@ function Speech() {
         height: '10%',
         fontSize: '30px'
     }
-    const stylesss = {
-        flex: '50%',
-        padding: '10px',
-        height: '90%',
-        fontSize: '15px',
-        // margin: '20px'
-        borderRadius: '15px'
-    }
-    const styleLogo = {
-        flex: '50%',
-        padding: '10px',
-        height: '30%',
-        borderRadius: '40px'
-        // fontSize: '30px'
-    }
 
     return (
         <>
-            <div className="chat-window">
-                <img src='https://cdn.discordapp.com/attachments/1064691884741623808/1066565171478278244/uTalk.png' style={styleLogo} />
 
-                <div className="chat-header">
-                    <p>Welcome! It's your Voice Assistant!</p>
-                </div>
+            <div className="chat-window">
                 {/* footer */}
                 <div className="chat-body">
                     <ScrollToBottom className="message-container">
                         {messageList.map((messageContent) => {
                             return (
                                 <div
-                                    className="message"
                                     id={"user" === messageContent.author ? "you" : "other"}
+                                    className={"user" === messageContent.author ? "talk-bubble tri-right round border btm-right-in" : "talk-bubble tri-right border round btm-left-in"}
                                 >
-                                    <div>
-                                        <div className="message-content">
+                                        {/* talktext */}
+                                        <div className="talktext">  
                                             <p>{messageContent.message}</p>
                                         </div>
-                                        <div className="message-meta">
+                                        {/* <div className="message-meta">
                                             <p id="time">{messageContent.time}</p>
                                             <p id="author">{messageContent.author}</p>
-                                        </div>
+                                        </div> */}
                                     </div>
-                                </div>
                             );
                         })}
 
@@ -145,18 +128,20 @@ function Speech() {
 
 
 
-                    <button onClick={listen} style={styless}>
-                        🎤
-                    </button>
-                    <textarea style={stylesss}
+                    
+                    <input 
+                        className='speech-text-box'
                         value={value}
-                        onChange={(event) => setValue(event.target.value)}
+                        onChange={(event) => setValue(event.target.value)
+                        }
+                        placeholder="Ask a question..."
                     />
-                    <button onClick={() => {
+                    <button 
+                        className='send-button'
+                        onClick={() => {
                         stop();
                         setUserOrAI('user');
                         sendMessage(value, 'user');
-
 
                         postSpeech().then((reply) => {
                             console.log("wow")
@@ -164,22 +149,15 @@ function Speech() {
                         });
                         console.log('this should be empty:', value)
 
-
-                    }} style={styless} >🛑</button>
+                    }} > Send </button>
+                    <button>
+                        <img src={MicIcon} className='mic-button' onClick={listen}/>
+                    </button>
+                                            
                     {listening}
                 </div>
 
-                
 
-                <div className="chat-footer3">
-                    {/* <a href="https://www.canada.ca/en/public-health/services/mental-health-services/mental-health-get-help.html"> */}
-                        
-                        <button onClick={"https://www.canada.ca/en/public-health/services/mental-health-services/mental-health-get-help.html"}><img src="https://static.thenounproject.com/png/1211643-200.png" alt="my image" /></button>
-                        <button onClick={"https://ontario.cmha.ca/documents/are-you-in-crisis/"}><img src="https://cdn-icons-png.flaticon.com/512/5070/5070407.png" alt="my image" /></button>
-
-                    {/* </a> */}
-                </div>
-            
             </div>
         </>
 

@@ -4,7 +4,7 @@
     display: absolute;
     align-items: center;
     justify-content: right;
-    margin-top: -100px;
+    margin-top: 150px;
     /* background-color: black; */
   }
   .dashboard__container {
@@ -28,3 +28,4 @@
   .dashboard div {
     margin-top: 7px;
   }
+

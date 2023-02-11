@@ -7,6 +7,8 @@ import { query, collection, getDocs, where, setDoc } from "firebase/firestore";
 // import Lobby from "./Lobby";
 import { AppContext, AppContextProvider } from './Context';
 import Speech from "./Speech";
+import Navbar from "./Navbar";
+// import "bootstrap/dist/css/bootstrap.min.css";
 
 function Dashboard() {
     const { user, loading, error } = useContext(AppContext);
@@ -37,21 +39,10 @@ function Dashboard() {
 
     return (
         <>
-            <div className="dashboard">
-                <div className="dashboard__container">
-                    {/* Logged in as */}
-                    {/* <div>{name}</div> */}
-                    {/* <div>{user?.email}</div> */}
-                    {/* <img
-                        src={pfp} 
-                        alt="new" 
-                        style={{ width: 300, height: 200 }} 
-                     /> */}
-                    <button className="dashboard__btn" onClick={logout}>
-                        Logout
-                    </button>
-                </div>
-            </div>
+            {/* <div className='navbar'> */}
+                <Navbar />
+            {/* </div> */}
+            
 
             {/* display docID of the user */}
             {/* <h1> {docRef}</h1> */}

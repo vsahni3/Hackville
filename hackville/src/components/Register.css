@@ -1,33 +1,132 @@
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+
+
+.top_logo {
+  position: absolute;
+  width: 8%;
+  height: 5%;
+  top: 20px;
+  left: 20px;
+}
+
+.top_title {
+  position: absolute;
+
+  top: 17px;
+  left: 150px;
+  font-size: 40px;
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin: auto;
+  color: #3EE0B9;
+
+  font-family: 'Russo One', sans-serif;
+}
+
+.signup_btn {
+  /* Rectangle 12 */
+
+position: absolute;
+width: 404px;
+height: 62.45px;
+left: 662px;
+top: 682.19px;
+
+background: #3EE0B9;
+border-radius: 31.224px;
+
+}
+
 .register {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .register__container {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    background-color: #dcdcdc;
-    padding: 30px;
-  }
-  .register__textBox {
-    padding: 10px;
-    font-size: 18px;
-    margin-bottom: 10px;
-  }
-  .register__btn {
-    padding: 10px;
-    font-size: 18px;
-    margin-bottom: 10px;
-    border: none;
-    color: white;
-    background-color: black;
-  }
-  .register__google {
-    background-color: #4285f4;
-  }
-  .register div {
-    margin-top: 7px;
-  }
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+}
+
+.title {
+  /* height: 100px; */
+  margin-bottom: 20px;
+  /* width: 594px;
+  height: 62px; */
+  /* Do you want to join? */
+  color: #000000;
+  font-family: 'Rubik', sans-serif;
+  font-weight: 500;
+font-size: 50px;
+line-height: 59px;
+text-align: center;
+}
+
+
+/* .title2 {
+  font-size: 50px;
+
+  font-family: 'Russo One', sans-serif;
+} */
+
+
+.register__container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background-color: #dcdcdc;
+  width: 500px;
+  padding: 30px;
+  background-color: white;
+  margin-bottom: 100px;
+}
+
+.register__textBox {
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  background: #ECECEC;
+  border: none;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 31.224px;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-top: 15px;
+}
+
+
+input::placeholder {
+  font-weight: bold;
+  opacity: 0.5;
+  text-indent: 10px;
+
+}
+a {
+  color: #3EE0B9;
+}
+a:hover {
+   color: green;
+}
+
+
+.register__btn {
+  margin-top: 15px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 10px;
+  font-size: 18px;
+  margin-bottom: 10px;
+  border: none;
+  color: black;
+  background: #3EE0B9;
+border-radius: 31.224px;
+}
+
+.register div {
+  margin-top: 7px;
+}
+
+.login_font {
+  font-family: 'Roboto Slab', serif;
+  font-family: 'Rubik', sans-serif;
+}

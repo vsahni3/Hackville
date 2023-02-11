@@ -7,6 +7,7 @@ import {
   signInWithGoogle,
 } from "../firebase";
 import "./Register.css";
+import Logo from './img/Logo.png'
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -44,51 +45,59 @@ function Register() {
   }, [user, loading]);
 
   return (
-    <div className="register">
-      <div className="register__container">
-        <input
-          type="text"
-          className="register__textBox"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
-        />
-        <input
-          type="text"
-          className="register__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="register__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <input
-          type="profile picture"
-          className="register__textBox"
-          value={picture}
-          onChange={(e) => setPicture(e.target.value)}
-          placeholder="Profile Picture URL"
-        />
-        <button className="register__btn" onClick={register}>
-          Register
-        </button>
-        <button
-          className="register__btn register__google"
-          onClick={signInWithGoogle}
-        >
-          Register with Google
-        </button>
+    <>
+      <img className="top_logo" src={Logo}></img>
+      <p className="top_title">Tech Tutor</p>
 
-        <div>
-          Already have an account? <Link to="/">Login</Link> now.
+
+      <div className="register">
+        <div className="register__container">
+        <p className="title">Do you want to join?</p>
+
+          <input
+            type="text"
+            className="register__textBox"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Full Name"
+          />
+          <input
+            type="text"
+            className="register__textBox"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            className="register__textBox"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          {/* <input
+            type="profile picture"
+            className="register__textBox"
+            value={picture}
+            onChange={(e) => setPicture(e.target.value)}
+            placeholder="Profile Picture URL"
+          /> */}
+          <button className="register__btn" onClick={register}>
+            Sign Up
+          </button>
+          {/* <button
+            className="register__btn register__google"
+            onClick={signInWithGoogle}
+          >
+            Register with Google
+          </button> */}
+
+          <div className="login_font">
+            Already have an account? <Link to="/">Login Here</Link> 
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

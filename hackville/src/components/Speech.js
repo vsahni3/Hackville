@@ -16,40 +16,7 @@ function Speech() {
     const [UserOrAI, setUserOrAI] = useState('user'); // whether or not this is robot OR USER
     const [countStop, setCountStop] = useState(0);
     const { resp, setResp } = useContext(AppContext);
-    const DalleGet = async () => { 
-        try {
-            // const body = { value }; // convert to JSON since body needs to be in JSON format
-            // const responses = [];
-            await fetch('http://127.0.0.1:5000/image/')
-                .then(response => {
-                    console.log(response, resp);
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('test');
-                    console.log(data);
-                    setResp(data);
-                    console.log(resp);
-                })
-                .catch(err => {
-                    console.error(err)
-                })
-            // console.log(response)
-            // response.json().then((data) => {
-                // setResp(data.response);
-            // })
-            
-        } catch (error) {
-            console.log(error);
-        } 
-    }
 
-    // direct to the DALL-E2 Image page
-    useEffect(() => {
-        if (resp !== '') {
-            console.log('useEffect ', resp)
-        }
-    }, [resp])
 
     const sendMessage = async (messageValue, user_author) => {
         // if (currentMessage !== "") {
@@ -202,21 +169,7 @@ function Speech() {
                     {listening}
                 </div>
 
-                <div className="chat-footer2">
-
-                    <Link to="/dalle">
-                        <button 
-                            style={styless}
-                            onClick={async () =>{
-                                await DalleGet();
-                                console.log(resp);
-                            }
-
-                            }
-                            >🔚
-                        </button>
-                    </Link>
-                </div>
+                
 
                 <div className="chat-footer3">
                     {/* <a href="https://www.canada.ca/en/public-health/services/mental-health-services/mental-health-get-help.html"> */}

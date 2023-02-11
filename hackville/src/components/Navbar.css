@@ -31,7 +31,10 @@ body {
   width: 100%;
   height: 70px;
   filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
+  /* top: 0px; */
+  margin-top: 0px;
 }
+
 
 .navbar_title {
   font-size: 2rem;
@@ -64,7 +67,7 @@ body {
 }
 
 .nav li.active {
-  background-color: #555;
+  /* background-color: #555; */
 }
 
 .nav li:hover {
@@ -96,6 +99,11 @@ width: 80px;
   right: 25px;
   font-family: 'Rubik', sans-serif;
   /* font-size: 15px; */
-
 }
 
+.navbar_chat{
+  position: relative;
+  right: 25px;
+  font-family: 'Rubik', sans-serif;
+  /* font-size: 15px; */
+}

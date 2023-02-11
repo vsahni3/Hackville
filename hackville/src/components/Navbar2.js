@@ -1,11 +1,11 @@
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
-import './Navbar.css'
+import './Navbar2.css'
 import { auth, db, logout } from "../firebase";
 import Logo from './img/Logo.png'
 
 export default function Navbar() {
     return (
-        <nav className="nav">
+        <nav className="nav2">
             <Link to="/" >
                 <img className="navbar_logo" src={Logo}></img>
                 <p className="navbar_title">TechTutor</p>

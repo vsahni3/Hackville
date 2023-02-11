@@ -46,6 +46,7 @@
     align-items: center;
     justify-content: center;
     background-color: white;
+    margin-top: 30px;
   }
 
   .title {
@@ -94,14 +95,13 @@
     margin-right: 80px;
     margin-top: 15px;
     height: 50px;
+    padding-left: 25px;
   }
 
 
   input::placeholder {
     font-weight: bold;
     opacity: 0.5;
-    text-indent: 10px;
-
   }
 
   a {

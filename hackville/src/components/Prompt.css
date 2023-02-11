@@ -1,0 +1,24 @@
+.prompt-window {
+    margin-top: 0px;
+}
+
+.prompt-title {
+    text-align: center;
+    font-family: 'Rubik', sans-serif;
+    font-size: 40px;
+}
+
+.row {
+    display: flex;
+  }
+  
+  .column {
+    flex: 50%;
+    margin: 20px;
+    border: 1px solid #000000;
+}
+
+.slider {
+    text-align: center;
+}
+

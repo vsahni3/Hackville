@@ -15,7 +15,6 @@ import Prompt from './components/Prompt';
 const App = () => {
   // All hooks are defined in App.js (highest component & Provided as context in the return statement)
 
-
   return (
     // NOTE: this context is also provided for its grandchildren (X need several Providers)
     <div className='App'>

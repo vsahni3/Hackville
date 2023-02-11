@@ -9,3 +9,6 @@ Werkzeug==2.2.2
 Flask-SQLAlchemy==3.0.3
 SQLAlchemy==2.0.3
 sqlparse==0.4.3
+torch==1.13.1
+torchvision==0.14.1
+matplotlib==3.6.3

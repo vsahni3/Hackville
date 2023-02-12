@@ -1,3 +1,6 @@
+<img width="255" alt="Logo_tech tutor_name" src="https://user-images.githubusercontent.com/125086615/218288406-8eba91ed-46cd-4d08-880f-68da5011001e.png">
+
+
 # Hackville
 This is a personalized voice assistant customized for answering questions about tech in a personalized manner depending on your comfort levels witb various technologiues.
 It also allows you to take a picture of the tech you are struggling with to make the response more personalized after classifying it.

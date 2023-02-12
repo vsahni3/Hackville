@@ -1,11 +1,14 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useSpeechRecognition, useSpeechSynthesis } from 'react-speech-kit';
 import ScrollToBottom from 'react-scroll-to-bottom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from './Context';
 import Navbar from './Navbar';
 import "./Speech.css";
 import MicIcon from './img/mic.png'
+import CameraIcon from './img/camera_button.png'
+
+
 
 function Speech() {
     const [value, setValue] = useState('');
@@ -18,7 +21,16 @@ function Speech() {
     const [messageList, setMessageList] = useState([]);
     const [UserOrAI, setUserOrAI] = useState('user'); // whether or not this is robot OR USER
     const [countStop, setCountStop] = useState(0);
-    const { resp, setResp } = useContext(AppContext);
+    const { resp, setResp, photoTaken, setPhotoTaken } = useContext(AppContext);
+    const navigate = useNavigate();
+    const { speak } = useSpeechSynthesis();
+
+    useEffect(() => {
+        if (photoTaken) {
+            setPhotoTaken(false);
+            sendMessage('We identified the technology', 'ai');            
+        }
+    }, []);
 
 
     const sendMessage = async (messageValue, user_author) => {
@@ -39,7 +51,6 @@ function Speech() {
         // }
     };
 
-    const { speak } = useSpeechSynthesis();
 
     // send the user's speech (converted to text) to the backend
     const postSpeech = async () => {
@@ -103,17 +114,12 @@ function Speech() {
                             return (
                                 <div
                                     id={"user" === messageContent.author ? "you" : "other"}
-                                    className={"user" === messageContent.author ? "talk-bubble tri-right round border btm-right-in" : "talk-bubble tri-right border round btm-left-in"}
+                                    className="message"
                                 >
-                                        {/* talktext */}
-                                        <div className="talktext">  
-                                            <p>{messageContent.message}</p>
-                                        </div>
-                                        {/* <div className="message-meta">
-                                            <p id="time">{messageContent.time}</p>
-                                            <p id="author">{messageContent.author}</p>
-                                        </div> */}
+                                    <div className="message-content">
+                                        <p>{messageContent.message}</p>
                                     </div>
+                                </div>
                             );
                         })}
 
@@ -126,32 +132,38 @@ function Speech() {
 
 
 
-                    
-                    <input 
+
+                    <input
                         className='speech-text-box'
                         value={value}
                         onChange={(event) => setValue(event.target.value)
                         }
                         placeholder="Ask a question..."
                     />
-                    <button 
+
+                    <button>
+                        <img src={CameraIcon} className='mic-button' onClick={() => navigate("/camera/")}/>
+                    </button>
+
+
+                    <button
                         className='send-button'
                         onClick={() => {
-                        stop();
-                        setUserOrAI('user');
-                        sendMessage(value, 'user');
+                            stop();
+                            setUserOrAI('user');
+                            sendMessage(value, 'user');
 
-                        postSpeech().then((reply) => {
-                            console.log("wow")
-                            speak({ text: reply })
-                        });
-                        console.log('this should be empty:', value)
+                            postSpeech().then((reply) => {
+                                console.log("wow")
+                                speak({ text: reply })
+                            });
+                            console.log('this should be empty:', value)
 
-                    }} > Send </button>
+                        }} > Send </button>
                     <button>
-                        <img src={MicIcon} className='mic-button' onClick={listen}/>
+                        <img src={MicIcon} className='mic-button' onClick={listen} />
                     </button>
-                                            
+
                     {listening}
                 </div>
 

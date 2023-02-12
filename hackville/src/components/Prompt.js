@@ -3,6 +3,8 @@ import Navbar from './Navbar2'
 import './Prompt.css'
 import { makeStyles } from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
+import { useNavigate } from 'react-router-dom';
+
 const useStyles = makeStyles({
     root: {
         width: 300,
@@ -43,10 +45,11 @@ const useStyles = makeStyles({
 
 const Prompt = () => {
     const classes = useStyles();
-    const [value1, setValue1] = useState(30);
-    const [value2, setValue2] = useState(30);
-    const [value3, setValue3] = useState(30);
+    const [value1, setValue1] = useState(40);
+    const [value2, setValue2] = useState(5);
+    const [value3, setValue3] = useState(5);
     const [value4, setValue4] = useState('');
+    const navigate = useNavigate();
 
 
     // const handleChange = (event, newValue) => {
@@ -115,7 +118,7 @@ const Prompt = () => {
                                 setValue1(newValue)
                                 console.log(value1);
                             }}
-                            defaultValue={30}
+                            defaultValue={40}
                             aria-labelledby="discrete-slider"
                             valueLabelDisplay="auto"
                             step={1}
@@ -136,7 +139,7 @@ const Prompt = () => {
                                 setValue2(newValue)
                                 console.log(value2);
                             }}
-                            defaultValue={30}
+                            defaultValue={5}
                             aria-labelledby="discrete-slider"
                             valueLabelDisplay="auto"
                             step={1}
@@ -159,7 +162,7 @@ const Prompt = () => {
                                 setValue3(newValue)
                                 console.log(value3)
                             }}
-                            defaultValue={30}
+                            defaultValue={5}
                             aria-labelledby="discrete-slider"
                             valueLabelDisplay="auto"
                             step={1}
@@ -183,7 +186,15 @@ const Prompt = () => {
                 </div>
             </div>
             <center>
-                <button className='info-submit' onClick={postPrompt}>Submit</button>
+                <button 
+                    className='info-submit' 
+                    onClick={() => {
+                    postPrompt()
+                    navigate('/dashboard/')
+
+                    
+                    
+                    }}>Submit</button>
             </center>
         </div>
     )

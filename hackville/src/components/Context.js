@@ -5,6 +5,9 @@ import { auth, db, logout } from "../firebase";
 const AppContext = createContext();
 
 const AppContextProvider = ({ children }) => {
+
+    const [photoTaken, setPhotoTaken] = useState(false);
+
     const [players, setPlayers] = useState([
         {
             id: 1,
@@ -44,7 +47,7 @@ const AppContextProvider = ({ children }) => {
 
 
     return (
-        <AppContext.Provider value={{ players, setPlayers, colors, setColors, user, loading, resp, setResp }}>
+        <AppContext.Provider value={{ players, setPlayers, colors, setColors, user, loading, resp, setResp, photoTaken, setPhotoTaken }}>
             {children}
         </AppContext.Provider>
     );

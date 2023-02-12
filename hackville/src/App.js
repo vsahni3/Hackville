@@ -11,6 +11,7 @@ import Dashboard from './components/Dashboard';
 import "./App.css";
 import Dalle from './components/Dalle';
 import Prompt from './components/Prompt';
+import Camera from './components/Camera';
 
 const App = () => {
   // All hooks are defined in App.js (highest component & Provided as context in the return statement)
@@ -27,6 +28,8 @@ const App = () => {
           <Route exact path="/reset" element={<Reset />} />
           <Route exact path="/dashboard" element={<Dashboard />} />
           <Route exact path="/prompt" element={<Prompt />} />
+          <Route exact path="/camera" element={<Camera />} />
+
 
           {/* <Route path="" element={} /> */}
         </Routes>

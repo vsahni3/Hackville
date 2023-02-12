@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt # for plotting
+from PIL import Image
 import numpy as np # for transformation
 import ssl
 ssl._create_default_https_context = ssl._create_unverified_context
@@ -11,7 +12,7 @@ import torch.optim as optim # optimzer
 
 # python image library of range [0, 1] 
 # transform them to tensors of normalized range[-1, 1]
-
+PATH = './cifar_net.pth'
 transform = transforms.Compose( # composing several transforms together
     [transforms.ToTensor(), # to tensor object
      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))]) # mean = 0.5, std = 0.5
@@ -23,17 +24,34 @@ batch_size = 4
 num_workers = 2
 
 # load train data
-trainset = torchvision.datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
+trainset = torchvision.datasets.CIFAR100(root='./data', train=True, download=True, transform=transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=batch_size, shuffle=True, num_workers=num_workers)
 
 # load test data
-testset = torchvision.datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
+testset = torchvision.datasets.CIFAR100(root='./data', train=False, download=True, transform=transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size=batch_size, shuffle=False, num_workers=num_workers)
 
 # put 100 classes into a set
-classes = ("beaver", "dolphin", "otter", "seal", "whale", "aquarium fish", "flatfish", "ray", "shark", "trout", "orchids", "poppies", "roses", "sunflowers", "tulips", "bottles", "bowls", "cans", "cups", "plates", "apples", "mushrooms", "oranges", "pears", "sweet peppers", "clock", "computer keyboard", "lamp", "telephone", "television", "bed", "chair", "couch", "table", "wardrobe", "bee", "beetle", "butterfly", "caterpillar", "cockroach", "bear", "leopard", "lion", "tiger", "wolf", "bridge", "castle", "house", "road", "skyscraper", "cloud", "forest", "mountain", "plain", "sea", "camel", "cattle", "chimpanzee", "elephant", "kangaroo", "fox", "porcupine", "possum", "raccoon", "skunk", "crab", "lobster", "snail", "spider", "worm", "baby", "boy", "girl", "man", "woman", "crocodile", "dinosaur", "lizard", "snake", "turtle", "hamster", "mouse", "rabbit", "shrew", "squirrel", "maple", "oak", "palm", "pine", "willow", "bicycle", "bus", "motorcycle", "pickup truck", "train", "lawn-mower", "rocket", "streetcar", "tank", "tractor")
-classes = ('plane', 'car', 'bird', 'cat',
-           'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
+classes = (
+    "apple", "aquarium fish", "baby", "bear", "beaver", "bed", "bee",
+    "beetle", "bicycle", "bottle", "bowl", "boy", "bridge", "bus",
+    "butterfly", "camel", "can", "castle", "caterpillar", "cattle",
+    "chair", "chimpanzee", "clock", "cloud", "cockroach", "couch",
+    "crab", "crocodile", "cup", "dinosaur", "dolphin", "elephant",
+    "flatfish", "forest", "fox", "girl", "hamster", "house", "kangaroo",
+    "computer keyboard", "lamp", "lawn-mower", "leopard", "lion",
+    "lizard", "lobster", "man", "maple tree", "motorcycle", "mountain",
+    "mouse", "mushroom", "oak tree", "orange", "orchid", "otter",
+    "palm tree", "pear", "pickup truck", "pine tree", "plain", "plate",
+    "poppy", "porcupine", "possum", "rabbit", "raccoon", "ray", "road",
+    "rocket", "rose", "sea", "seal", "shark", "shrew", "skunk", "skyscraper",
+    "snail", "snake", "spider", "squirrel", "streetcar", "sunflower",
+    "sweet pepper", "table", "tank", "telephone", "television", "tiger",
+    "tractor", "train", "trout", "tulip", "turtle", "wardrobe", "whale",
+    "willow tree", "wolf", "woman", "worm"
+)
+
+
 def imshow(img):
   ''' function to show image '''
   img = img / 2 + 0.5 # unnormalize
@@ -60,7 +78,7 @@ class Net(nn.Module):
         self.conv2 = nn.Conv2d(6, 16, 5) 
         self.fc1 = nn.Linear(16 * 5 * 5, 120) # 5x5 from image dimension
         self.fc2 = nn.Linear(120, 84)
-        self.fc3 = nn.Linear(84, 10)
+        self.fc3 = nn.Linear(84, 100)
 
     def forward(self, x):
         ''' the forward propagation algorithm '''
@@ -79,28 +97,28 @@ criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
 
-for epoch in range(2):  # loop over the dataset multiple times
+# for epoch in range(2):  # loop over the dataset multiple times
 
-    running_loss = 0.0
-    for i, data in enumerate(trainloader, 0):
-        # get the inputs; data is a list of [inputs, labels]
-        inputs, labels = data
+#     running_loss = 0.0
+#     for i, data in enumerate(trainloader, 0):
+#         # get the inputs; data is a list of [inputs, labels]
+#         inputs, labels = data
 
-        # zero the parameter gradients
-        optimizer.zero_grad()
+#         # zero the parameter gradients
+#         optimizer.zero_grad()
 
-        # forward + backward + optimize
-        outputs = net(inputs)
-        loss = criterion(outputs, labels)
-        loss.backward()
-        optimizer.step()
+#         # forward + backward + optimize
+#         outputs = net(inputs)
+#         loss = criterion(outputs, labels)
+#         loss.backward()
+#         optimizer.step()
 
-        # print statistics
-        running_loss += loss.item()
-        if i % 2000 == 1999:    # print every 2000 mini-batches
-            print('[%d, %5d] loss: %.3f' %
-                  (epoch + 1, i + 1, running_loss / 2000))
-            running_loss = 0.0
+#         # print statistics
+#         running_loss += loss.item()
+#         if i % 2000 == 1999:    # print every 2000 mini-batches
+#             print('[%d, %5d] loss: %.3f' %
+#                   (epoch + 1, i + 1, running_loss / 2000))
+#             running_loss = 0.0
 
 # whatever you are timing goes here
 
@@ -110,13 +128,32 @@ for epoch in range(2):  # loop over the dataset multiple times
 
 print('Finished Training')
 
+# dataiter = iter(testloader)
+# images, labels = dataiter.__next__()
+# imshow(torchvision.utils.make_grid(images))
+# print('GroundTruth: ', ' '.join('%s' % classes[labels[j]] for j in range(4)))
+# outputs = net(images)
+
+# _, predicted = torch.max(outputs, 1)
+
+# print('Predicted: ', ' '.join('%s' % classes[predicted[j]]
+#                               for j in range(4)))
+torch.save(net.state_dict(), PATH)
 dataiter = iter(testloader)
 images, labels = dataiter.__next__()
-classes = ('deer', 'car', 'cat', 'ship',
-           'plane', 'dog', 'frog', 'bird', 'horse', 'truck')
-for j in range(4):
-    print(labels[j])
-    print(classes[labels[j]])
-# print images
-imshow(torchvision.utils.make_grid(images))
-print('GroundTruth: ', ' '.join('%s' % classes[labels[j]] for j in range(4)))
+print(images.shape)
+image = Image.open('app/wifi-router-2048px-4639.jpeg')
+img_resized = image.resize((32, 32))
+
+# Save the resized image
+
+tensor_image = transform(img_resized)
+list_tens = tensor_image.tolist()
+list_tens = [list_tens for i in range(4)]
+new_tensor_img = torch.FloatTensor(list_tens)
+print(new_tensor_img.shape)
+output = net(new_tensor_img)
+_, predicted = torch.max(output, 1)
+
+print('Predicted: ', ' '.join('%s' % classes[predicted[j]]
+                              for j in range(4)))

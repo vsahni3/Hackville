@@ -39,7 +39,9 @@ class User(db.Model):
 @app.route('/login/', methods=['POST'])
 def login():
     email = request.get_json()['email']
+
     session['email'] = email
+
     user = User.query.filter_by(email=email).first()
 
     if not user:
@@ -96,8 +98,11 @@ def msg():
     Here is some additional info about how comfortable I am with using technology:
     {user.extra_info}
 
-    Given all this info, respond to the following question about help with technology asked by the above user
+    Based on the scores and the additional information provided, respond to the following question to help with technology.
     {text}
+
+    Response:
+
     """
     response = reply(prompt)
     return jsonify({

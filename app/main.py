@@ -35,7 +35,7 @@ class User(db.Model):
         db.session.add(self)
         db.session.commit()
 
-
+User.query.delete()
 # with app.app_context():
 #     db.create_all()
 
@@ -89,13 +89,16 @@ def msg():
         return jsonify(response)
 
     user = User.query.filter_by(email=email).first()
+    extra = user.extra_info
+    if not ('modem' in text or 'tv' in text.lower()):
+        extra = 'Please explain this is very simple language so I can understand'
     prompt = f"""
     I am {user.age} years old. I will add my comfort levels as a number, with using the 
     following fields below:
     Hardware: {user.hardware}
     Social Media: {user.social_media}
     Here is some additional info about how comfortable I am with using technology:
-    {user.extra_info}
+    {extra}
 
     Based on the scores and the additional information provided, respond to the following question to help with technology.
     {text}

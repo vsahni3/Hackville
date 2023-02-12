@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+
 .prompt-window {
     margin-top: 0px;
 }
@@ -8,17 +12,57 @@
     font-size: 40px;
 }
 
+.prompt-window .row .column p{
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+
+}
+
 .row {
     display: flex;
-  }
-  
-  .column {
+    margin-left: 190px;
+    margin-right: 80px;
+    margin-bottom: 90px;
+    margin-top: 100px;
+}
+
+.column {
     flex: 50%;
-    margin: 20px;
-    border: 1px solid #000000;
+    
+    /* border: 1px solid #000000; */
 }
 
 .slider {
     text-align: center;
 }
 
+.extra-info {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 15px;
+    background-color: #ECECEC;
+    width: 80%;
+    height: 100%;
+    border: 0;
+    box-shadow: 0px 0px 15px 0px rgba(200, 230, 255, 2);
+
+}
+
+
+.info-submit {
+    background: #3EE0B9;
+  border-radius: 43px;
+  height: 100%;
+  width: 10%;
+  border: 0px;
+  margin-right: 10px;
+  margin-left: 10px;
+  color: white;
+  font-size: 20px;
+  font-family: 'Rubik', sans-serif;
+  margin-top: 50px;
+}
+
+center {
+    height: 50px;
+}

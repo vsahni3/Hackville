@@ -86,7 +86,6 @@ def msg():
     prompt = f"""
     I am {user.age} years old. I will add my comfort levels as a number, with using the 
     following fields below:
-    Banking: {user.banking}
     Hardware: {user.hardware}
     Social Media: {user.social_media}
     Here is some additional info about how comfortable I am with using technology:

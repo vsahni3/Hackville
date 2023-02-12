@@ -6,7 +6,6 @@ co = cohere.Client('ZG1hp4UsOagPS7V8vOiSxkGMljolDMPi96KAvboq')
 
 prompt1a = f"""I am 71 years old. I will add my comfort levels as a number on a scale from 1-10, with using the 
 following fields below:
-Banking: 1
 Hardware: 4
 Social Media: 2
 Here is some additional info about how comfortable I am with using technology:
@@ -32,7 +31,6 @@ You will receive a notification when your friend request is accepted.
 prompt1b = f"""
 I am 71 years old. I will add my comfort levels as a number on a scale from 1-10, with using the 
 following fields below:
-Banking: 1
 Hardware: 4
 Social Media: 2
 Here is some additional info about how comfortable I am with using technology:
@@ -54,7 +52,6 @@ Here are some step-by-step instructions on how to make a payment online:
 prompt1c = f"""
 I am 71 years old. I will add my comfort levels as a number on a scale from 1-10, with using the 
 following fields below:
-Banking: 1
 Hardware: 4
 Social Media: 2
 Here is some additional info about how comfortable I am with using technology:
@@ -80,7 +77,6 @@ I hope these instructions help!
 prompt1d = f"""
 I am 71 years old. I will add my comfort levels as a number on a scale from 1-10, with using the 
 following fields below:
-Banking: 1
 Hardware: 4
 Social Media: 2
 Here is some additional info about how comfortable I am with using technology:
@@ -102,7 +98,6 @@ Here are step-by-step instructions on how to save a photo you like from Facebook
 prompt2a = f"""
 I am 65 years old. I will add my comfort levels as a number on a scale from 1-10, using the 
 following fields below:
-Banking: 1
 Hardware: 4
 Social Media: 4
 
@@ -126,7 +121,6 @@ Try restarting the device.
 prompt2b = f"""
 I am 65 years old. I will add my comfort levels as a number on a scale from 1-10, using the 
 following fields below:
-Banking: 1
 Hardware: 4
 Social Media: 4
 
@@ -152,7 +146,6 @@ Here are some step-by-step instructions on how to install a new app on a smartph
 prompt2c = f"""
 I am 65 years old. I will add my comfort levels as a number on a scale from 1-10, using the 
 following fields below:
-Banking: 1
 Hardware: 4
 Social Media: 4
 
@@ -171,7 +164,6 @@ It sounds like you are having trouble with your phone's storage. Have you tried 
 prompt2d = f"""
 I am 65 years old. I will add my comfort levels as a number on a scale from 1-10, using the 
 following fields below:
-Banking: 1
 Hardware: 4
 Social Media: 4
 
@@ -190,12 +182,11 @@ You can enable Siri on your iPhone to send text messages to your grandson while 
 prompt3a = f"""
 I am 60 years old. I will add my comfort levels as a number on a scale from 1-10, using the 
 following fields below:
-Banking: 10
 Hardware: 3
 Social Media: 10
 
 Here is some additional info about how comfortable I am with using technology:
-I am very good with understaning the banking apps and comfortable with using social media
+I am comfortable with using social media
 I struggle with understanding which wires are needed for my TV to work
 
 Based on the scores and the additional information provided, respond to the following question to help with technology.
@@ -212,12 +203,11 @@ Older Apple devices used a 30-pin dock connector, while newer devices use a Ligh
 prompt3b = f"""
 I am 60 years old. I will add my comfort levels as a number on a scale from 1-10, using the 
 following fields below:
-Banking: 10
 Hardware: 3
 Social Media: 10
 
 Here is some additional info about how comfortable I am with using technology:
-I am very good with understaning the banking apps and comfortable with using social media
+I am comfortable with using social media
 I struggle with understanding which wires are needed for my TV to work
 
 Based on the scores and the additional information provided, respond to the following question to help with technology.
@@ -233,12 +223,11 @@ Both the iphone charger and the macbook charger use different connectors, so the
 prompt3c = f"""
 I am 60 years old. I will add my comfort levels as a number on a scale from 1-10, using the 
 following fields below:
-Banking: 10
 Hardware: 3
 Social Media: 10
 
 Here is some additional info about how comfortable I am with using technology:
-I am very good with understaning the banking apps and comfortable with using social media
+I am comfortable with using social media
 I struggle with understanding which wires are needed for my TV to work
 
 Based on the scores and the additional information provided, respond to the following question to help with technology.
@@ -253,12 +242,11 @@ To delete the "other" storage from your iPhone, you will need to go into your se
 prompt3d = f"""
 I am 60 years old. I will add my comfort levels as a number on a scale from 1-10, using the 
 following fields below:
-Banking: 10
 Hardware: 3
 Social Media: 10
 
 Here is some additional info about how comfortable I am with using technology:
-I am very good with understaning the banking apps and comfortable with using social media
+I am comfortable with using social media
 I struggle with understanding which wires are needed for my TV to work
 
 Based on the scores and the additional information provided, respond to the following question to help with technology.

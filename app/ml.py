@@ -281,4 +281,5 @@ def reply(prompt):
     stop_sequences=["--"],
     return_likelihoods='NONE',
     truncate='START')
-    return response.generations[0].text
+    return response.generations[0].text.strip('-').strip('\n')
+

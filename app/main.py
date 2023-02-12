@@ -19,15 +19,13 @@ class User(db.Model):
     age = db.Column(db.String(80), nullable=False)
     hardware = db.Column(db.String(80), nullable=True)
     social_media = db.Column(db.String(80), nullable=True)
-    banking = db.Column(db.String(80), nullable=True)
     extra_info = db.Column(db.String(300), nullable=True)
 
-    def __init__(self, email, age, hardware, social_media, banking, extra_info):
+    def __init__(self, email, age, hardware, social_media, extra_info):
         self.email = email
         self.age = age
         self.hardware = hardware
         self.social_media = social_media
-        self.banking = banking
         self.extra_info = extra_info
 
 
@@ -45,7 +43,7 @@ def login():
     user = User.query.filter_by(email=email).first()
 
     if not user:
-        new_user = User(email, '', '', '', '', '')
+        new_user = User(email, '', '', '', '')
         db.session.add(new_user)
         db.session.commit()
 
@@ -59,7 +57,6 @@ def inputs():
     age = request.get_json()['age']
     hardware = request.get_json()['hardware']
     social_media = request.get_json()['social_media']
-    banking = request.get_json()['banking']
     extra_info = request.get_json()['extra_info']
     
     email = session.get('email')
@@ -71,7 +68,6 @@ def inputs():
     user.age = age
     user.hardware = hardware
     user.social_media = social_media
-    user.banking = banking
     user.extra_info = extra_info
     db.session.commit()
 

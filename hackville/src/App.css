@@ -121,36 +121,46 @@ body {
 
 #you {
   position: relative;
-  left: 800px;
+  /* left: 800px; */
+  left: 70%;
+  width: 200px;
+  justify-content: flex-end;
+
+
 
 }
 
 #you .talktext {
-  justify-content: flex-start;
+  justify-content: flex-end;
+  height: 60px;
+
 
 }
 
 #you .message-meta {
-  justify-content: flex-start;
+  justify-content: flex-end;
   margin-left: 5px;
 }
 
 #other {
   /* justify-content: flex-end; */
   justify-content: flex-start;
+  left: 5%;
+  width: 200px;
 }
 
 #other .talktext {
-  justify-content: flex-end;
+  justify-content: flex-start;
   background: linear-gradient(287.92deg, rgba(23, 174, 223, 0.376) -5.49%, rgba(23, 174, 223, 0) 82.28%), #3EE0B9;
   border-radius: 30px;
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
   /* right: 5px; */
+  height: 60px;
 }
 
 #other .message-meta {
-  justify-content: flex-end;
+  justify-content: flex-start;
   margin-right: 5px;
 }
 

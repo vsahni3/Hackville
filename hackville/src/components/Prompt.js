@@ -75,6 +75,29 @@ const Prompt = () => {
         },
     ];
 
+    // {"age": "81", "hardware": "4", "social_media": "4", "banking": "6", "extra_info": "I can't upload picturs on Faecbook very well"}
+    const postPrompt = async () => {
+        // headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+        // headers.append('Access-Control-Allow-Credentials', 'true');
+        try {
+          const body = { "age": value1, "hardware": value2, "social_media": value3, "extra_info": value4 }; // convert to JSON since body needs to be in JSON format
+          console.log(JSON.stringify(body));
+    
+          const response = await fetch('http://127.0.0.1:5000/inputs/', {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Request-Method': 'POST',
+              'Access-Control-Request-Headers': 'Content-Type'
+            },
+            body: JSON.stringify(body),
+          }).then(response => {
+            console.log(response)
+          })
+        } catch (error) {
+          console.log(error);
+        }
+      }
 
     return (
         <div className='prompt-window'>
@@ -160,7 +183,7 @@ const Prompt = () => {
                 </div>
             </div>
             <center>
-                <button className='info-submit' onClick={() => console.log('test')}>Submit</button>
+                <button className='info-submit' onClick={postPrompt}>Submit</button>
             </center>
         </div>
     )

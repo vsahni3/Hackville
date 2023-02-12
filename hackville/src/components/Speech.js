@@ -45,9 +45,9 @@ function Speech() {
     const postSpeech = async () => {
         try {
 
-            const body = { value }; // convert to JSON since body needs to be in JSON format
+            const body = { "text": value }; // convert to JSON since body needs to be in JSON format
             // const responses = [];
-            const response = await fetch('http://127.0.0.1:5000/message/', {
+            const response = await fetch('http://127.0.0.1:5000/msg/', {
                 method: "POST",
                 // mode: 'no-cors',
                 headers: {
@@ -56,9 +56,7 @@ function Speech() {
                     "Access-Control-Allow-Headers": '*',
                     "Access-Control-Allow-Methods": 'GET, POST, PUT, DELETE'
                 },
-                body: JSON.stringify({
-                    "message": value
-                })
+                body: JSON.stringify(body)
             });
             // console.log(await response.json())
             let resp = "";

@@ -30,7 +30,7 @@ gap: 2rem;
 padding: 0 1rem;
 height: 70px;
 filter: drop-shadow(0 0.2rem 0.25rem rgba(0, 0, 0, 0.2));
-margin-top: -170px;
+margin-top: -160px;
 position: relative;
 width: 100vw;
 }
@@ -75,14 +75,10 @@ padding: .25rem;
 
 .navbar_logout {
 /* Rectangle 15 */
-
 box-sizing: border-box;
 position: relative;
-
-
-
 background: #3EE0B9;
-border: 1px solid #000000;
+/* border: 1px solid #000000; */
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 21.5px;
 right: 30px;
@@ -91,6 +87,8 @@ margin-top: 17px;
 margin-bottom: 17px;
 color: white;
 width: 80px;
+border: 0px;
+font-family: 'Rubik', sans-serif;
 }
 
 .navbar_prompt{

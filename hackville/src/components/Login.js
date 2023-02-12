@@ -11,32 +11,36 @@ function Login() {
   const [password, setPassword] = useState("");
   const [user, loading, error] = useAuthState(auth);
   const navigate = useNavigate();
-  
+
 
   const postEmail = async () => {
-    
+
     // headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
     // headers.append('Access-Control-Allow-Credentials', 'true');
     try {
       const body = { email }; // convert to JSON since body needs to be in JSON format
       console.log(JSON.stringify(body));
-      
+      console.log(body);
+
+
       const response = await fetch('http://127.0.0.1:5000/login/', {
         method: "POST",
-        mode: 'cors',
-        crossorigin: 'true',
-        headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "http://127.0.0.1:5000", 'Access-Control-Allow-Credentials': 'true' },
-        body: JSON.stringify(
-          {
-            "email": body
-          }
-        ),
-      });
-      console.log(response);
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Request-Method': 'POST',
+          'Access-Control-Request-Headers': 'Content-Type'
+        },
+        body: JSON.stringify(body),
+      }).then(response => {
+        console.log(response)
+      })
     } catch (error) {
       console.log(error);
     }
   }
+
+
+
 
   useEffect(() => {
     if (loading) {
@@ -48,7 +52,7 @@ function Login() {
   return (
 
     <div className="register">
-        <div className="register__container">
+      <div className="register__container">
         <p className="title2">Welcome to</p>
         <p className="title3">Tech Tutor</p>
         <img className="Logo" src={Logo}></img>
@@ -73,6 +77,7 @@ function Login() {
           onClick={() => {
             signInWithEmailAndPassword(auth, email, password);
             postEmail();
+
           }
           }
         >

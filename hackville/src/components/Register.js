@@ -19,16 +19,25 @@ function Register() {
   const navigate = useNavigate();
 
   const postEmail = async () => {
+
+    // headers.append('Access-Control-Allow-Origin', 'http://localhost:3000');
+    // headers.append('Access-Control-Allow-Credentials', 'true');
     try {
       const body = { email }; // convert to JSON since body needs to be in JSON format
       console.log(JSON.stringify(body));
+      console.log(body);
 
       const response = await fetch('http://127.0.0.1:5000/login/', {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body)
-      });
-      console.log(response);
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Request-Method': 'POST',
+          'Access-Control-Request-Headers': 'Content-Type'
+        },
+        body: JSON.stringify(body),
+      }).then(response => {
+        console.log(response)
+      })
     } catch (error) {
       console.log(error);
     }

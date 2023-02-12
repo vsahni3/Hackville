@@ -11,9 +11,9 @@ app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
-Session(app)
+# Session(app)
 db = SQLAlchemy(app)
-EMAIL = ''
+EMAIL = ['']
 class User(db.Model):
     email = db.Column(db.String(80), primary_key=True, nullable=False)
     age = db.Column(db.String(80), nullable=False)
@@ -36,12 +36,12 @@ class User(db.Model):
 #     db.create_all()
 @app.route('/login/', methods=['POST'])
 def login():
-    EMAIL = request.get_json()['email']
-
-    user = User.query.filter_by(email=EMAIL).first()
+    EMAIL[0] = request.get_json()['email']
+    email = EMAIL[0]
+    user = User.query.filter_by(email=email).first()
 
     if not user:
-        new_user = User(EMAIL, '', '', '', '')
+        new_user = User(email, '', '', '', '')
         db.session.add(new_user)
         db.session.commit()
 
@@ -57,7 +57,7 @@ def inputs():
     social_media = request.get_json()['social_media']
     extra_info = request.get_json()['extra_info']
     
-    email = EMAIL
+    email = EMAIL[0]
     if not email:
         response = {'status': 'not logged in'}
         return jsonify(response)
@@ -77,7 +77,7 @@ def inputs():
 @app.route('/msg/', methods=['POST'])
 def msg():
     text = request.get_json()['text']
-    email = EMAIL
+    email = EMAIL[0]
     if not email:
         response = {'status': 'not logged in'}
         return jsonify(response)

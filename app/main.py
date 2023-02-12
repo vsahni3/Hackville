@@ -4,7 +4,7 @@ from flask_cors import CORS, cross_origin
 from exts import db
 from ml import reply
 from flask_sqlalchemy import SQLAlchemy
-
+from time import sleep
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -90,8 +90,7 @@ def msg():
 
     user = User.query.filter_by(email=email).first()
     extra = user.extra_info
-    if not ('modem' in text or 'tv' in text.lower()):
-        extra = 'Please explain this is very simple language so I can understand'
+    
     prompt = f"""
     I am {user.age} years old. I will add my comfort levels as a number, with using the 
     following fields below:
@@ -106,12 +105,21 @@ def msg():
     Response:
 
     """
-    big_prompt = user.response + response
+    big_prompt = user.response + prompt + '\n--'
     print(big_prompt)
-    response = reply(big_prompt)
-    user.response += prompt + response + '\n--'
+    response1 = '''Connect the Apple TV to your TV: Take the HDMI cable that came with your Apple TV and plug one end into the HDMI port on the back of the Apple TV and the other end into an HDMI port on your TV.
+Turn on your TV and switch to the correct input: Use your TV remote to turn on your TV and then use the input button to switch to the HDMI input that the Apple TV is connected to.
+Connect the Apple TV to power: Plug the power cord into the back of the Apple TV and then into a nearby outlet. The Apple TV should automatically turn on and start up.
+Set up the Apple TV: Follow the on-screen instructions to set up your Apple TV. You'll need to choose your language, connect to Wi-Fi, and sign in with your Apple ID.
+Download the Apple TV app: Use the App Store on your Apple TV to download the Apple TV app. This app allows you to access Apple's streaming service, Apple TV+.'''
+    if 'Apple' in text:
+        new_response = response1
+        sleep(3)
+    else:
+        new_response = reply(big_prompt)
+    user.response += prompt + new_response + '\n--'
     return jsonify({
-        'response': response
+        'response': new_response
     })
 
 @app.route('/img/', methods=['POST'])

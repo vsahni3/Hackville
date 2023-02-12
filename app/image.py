@@ -91,69 +91,59 @@ class Net(nn.Module):
         return x
 
 
+def train():
 
-net = Net()
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+    net = Net()
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+    for epoch in range(2):  # loop over the dataset multiple times
 
+        running_loss = 0.0
+        for i, data in enumerate(trainloader, 0):
+            # get the inputs; data is a list of [inputs, labels]
+            inputs, labels = data
 
-# for epoch in range(2):  # loop over the dataset multiple times
+            # zero the parameter gradients
+            optimizer.zero_grad()
 
-#     running_loss = 0.0
-#     for i, data in enumerate(trainloader, 0):
-#         # get the inputs; data is a list of [inputs, labels]
-#         inputs, labels = data
+            # forward + backward + optimize
+            outputs = net(inputs)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
 
-#         # zero the parameter gradients
-#         optimizer.zero_grad()
+            # print statistics
+            running_loss += loss.item()
+            if i % 2000 == 1999:    # print every 2000 mini-batches
+                print('[%d, %5d] loss: %.3f' %
+                    (epoch + 1, i + 1, running_loss / 2000))
+                running_loss = 0.0
 
-#         # forward + backward + optimize
-#         outputs = net(inputs)
-#         loss = criterion(outputs, labels)
-#         loss.backward()
-#         optimizer.step()
+def testing():
+    dataiter = iter(testloader)
+    images, labels = dataiter.__next__()
+    imshow(torchvision.utils.make_grid(images))
+    print('GroundTruth: ', ' '.join('%s' % classes[labels[j]] for j in range(4)))
+    outputs = net(images)
 
-#         # print statistics
-#         running_loss += loss.item()
-#         if i % 2000 == 1999:    # print every 2000 mini-batches
-#             print('[%d, %5d] loss: %.3f' %
-#                   (epoch + 1, i + 1, running_loss / 2000))
-#             running_loss = 0.0
+    torch.save(net.state_dict(), PATH)
+    dataiter = iter(testloader)
+    images, labels = dataiter.__next__()
+    print(images.shape)
 
-# whatever you are timing goes here
+def predict(image):
+    img_resized = image.resize((32, 32))
 
+    # Save the resized image
 
-# Waits for everything to finish running
+    tensor_image = transform(img_resized)
+    list_tens = tensor_image.tolist()
+    list_tens = [list_tens for i in range(4)]
+    new_tensor_img = torch.FloatTensor(list_tens)
+    print(new_tensor_img.shape)
+    output = net(new_tensor_img)
+    _, predicted = torch.max(output, 1)
 
-
-print('Finished Training')
-
-# dataiter = iter(testloader)
-# images, labels = dataiter.__next__()
-# imshow(torchvision.utils.make_grid(images))
-# print('GroundTruth: ', ' '.join('%s' % classes[labels[j]] for j in range(4)))
-# outputs = net(images)
-
-# _, predicted = torch.max(outputs, 1)
-
-# print('Predicted: ', ' '.join('%s' % classes[predicted[j]]
-#                               for j in range(4)))
-torch.save(net.state_dict(), PATH)
-dataiter = iter(testloader)
-images, labels = dataiter.__next__()
-print(images.shape)
-image = Image.open('app/wifi-router-2048px-4639.jpeg')
-img_resized = image.resize((32, 32))
-
-# Save the resized image
-
-tensor_image = transform(img_resized)
-list_tens = tensor_image.tolist()
-list_tens = [list_tens for i in range(4)]
-new_tensor_img = torch.FloatTensor(list_tens)
-print(new_tensor_img.shape)
-output = net(new_tensor_img)
-_, predicted = torch.max(output, 1)
-
-print('Predicted: ', ' '.join('%s' % classes[predicted[j]]
-                              for j in range(4)))
+    print('Predicted: ', ' '.join('%s' % classes[predicted[j]]
+                                for j in range(4)))
+    return [classes[predicted[j]] for j in range(4)]

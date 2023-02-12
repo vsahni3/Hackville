@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS, cross_origin
-
+# from image import predict
 from exts import db
 from ml import reply
 from flask_sqlalchemy import SQLAlchemy
@@ -11,6 +11,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 app.config ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 # Session(app)
+
 db = SQLAlchemy(app)
 EMAIL = ['']
 class User(db.Model):
@@ -19,20 +20,26 @@ class User(db.Model):
     hardware = db.Column(db.String(80), nullable=True)
     social_media = db.Column(db.String(80), nullable=True)
     extra_info = db.Column(db.String(300), nullable=True)
+    response = db.Column(db.String(3000), nullable=True)
 
-    def __init__(self, email, age, hardware, social_media, extra_info):
+    def __init__(self, email, age, hardware, social_media, extra_info, response):
         self.email = email
         self.age = age
         self.hardware = hardware
         self.social_media = social_media
         self.extra_info = extra_info
+        self.response = response
 
 
     def save(self):
         db.session.add(self)
         db.session.commit()
+
+
 # with app.app_context():
 #     db.create_all()
+
+
 @app.route('/login/', methods=['POST'])
 def login():
     EMAIL[0] = request.get_json()['email']
@@ -40,9 +47,9 @@ def login():
     user = User.query.filter_by(email=email).first()
 
     if not user:
-        new_user = User(email, '', '', '', '')
+        new_user = User(email, '', '', '', '', '')
         db.session.add(new_user)
-        db.session.commit()
+        db.session.commit() 
 
     return jsonify({
         'response': 'Done'
@@ -96,10 +103,22 @@ def msg():
     Response:
 
     """
-    response = reply(prompt)
+    big_prompt = user.response + response
+    print(big_prompt)
+    response = reply(big_prompt)
+    user.response += prompt + response + '\n--'
     return jsonify({
         'response': response
     })
+
+@app.route('/img/', methods=['POST'])
+def img():
+    image = request.get_json()['image']
+    prediction = predict(image)
+    return jsonify({
+        'response': prediction
+    })
+
 
 if __name__ == '__main__':
     # Threaded option to enable multiple instances for multiple user access support
